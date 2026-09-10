@@ -6,6 +6,10 @@ https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
 TODO:
+1. Создать ветку 'MyMovies';
+2. Причесать страницу 'Edit';
+
+DONE:
 1. В Solution 'Blazor' добавить проект 'Converter',
    и в нем реализовать следующие компоненты:
 	Dec2Bin - переводит десятичное число в двоичную систему счисления;
