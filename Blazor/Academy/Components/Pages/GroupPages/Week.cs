@@ -8,6 +8,7 @@
 		{
 			this.days = days;
 		}
+
 		public override string ToString()
 		{
 			List<string> list = new List<string>();
