@@ -6,6 +6,9 @@ https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
 TODO:
+1. Внедрить компонент 'Photo' на страницу 'Studens/Create';
+
+DONE:
 1. На странице Студентов реализовать Pagination, Поиск и Сортировку;
 
 DONE:
