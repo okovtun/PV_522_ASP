@@ -3,6 +3,15 @@
 	display: flex;
 	justify-content: space-between;
 }
+	.human-container > div
+	{
+		width:50%;
+		height:100vh;
+	}
+	.human-container form
+	{
+		text-align:right;
+	}
 
 .human-text-fields
 {
@@ -12,7 +21,8 @@
 
 .photo-area
 {
-	width: 50%;
+	width: 90%;
+	height:67vh;
 	text-align: center;
 }
 
