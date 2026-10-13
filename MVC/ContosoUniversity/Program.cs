@@ -36,6 +36,7 @@ app.Run();
 
 static void CreateDbIfNotExists(IHost host)
 {
+	//Scope - область видимости
 	using (IServiceScope scope = host.Services.CreateScope())
 	{
 		IServiceProvider provider = scope.ServiceProvider;

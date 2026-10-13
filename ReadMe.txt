@@ -6,6 +6,9 @@ https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
 TODO:
+1. Проверить CRUD-операции для всех моделей;
+
+DONE:
 1. Разобраться с темами;
 2. Посмотреть Schedule;
 
