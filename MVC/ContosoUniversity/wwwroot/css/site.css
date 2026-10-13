@@ -25,6 +25,11 @@ html
 body
 {
 	margin-bottom: 60px;
-	background-color: #323232;
-	color: aliceblue;
+	/*background-color: #323232;
+	color: aliceblue;*/
 }
+/*.bg-white
+{
+	background-color: #242424 !important;
+	color: aliceblue !important;
+}*/
