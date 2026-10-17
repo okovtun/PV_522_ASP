@@ -5,6 +5,10 @@ SVG:
 https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
+TODO:
+1. Прикрутить Pagination на все остальные страницы;
+2. Попробовать добить ItemsPerPage;
+
 DONE:
 1. Проверить CRUD-операции для всех моделей;
 
