@@ -5,7 +5,7 @@ SVG:
 https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
-TODO:
+DONE:
 1. Проверить CRUD-операции для всех моделей;
 
 DONE:
