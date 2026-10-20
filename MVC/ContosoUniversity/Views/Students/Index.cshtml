@@ -14,16 +14,17 @@
 			<input type="submit" value="Поиск" class="btn btn-primary" />
 			<a asp-action="Index" class="btn btn-dark">Сброс</a>
 		</label>
+
+		<div>
+			<label for="items-per-page">Items per page:</label>
+			<select id="items-per-page" name="itemsPerPage" onchange="this.form.submit()">
+				<option value="3" selected="@(Convert.ToInt32(ViewData["ItemsPerPage"]) == 3)">3</option>
+				<option value="5" selected="@(Convert.ToInt32(ViewData["ItemsPerPage"]) == 5)">5</option>
+				<option value="8" selected="@(Convert.ToInt32(ViewData["ItemsPerPage"]) == 8)">8</option>
+			</select>
+		</div>
 	</form>
 
-	<div>
-		<label for="items-per-page">Items per page:</label>
-		<select id="items-per-page" asp-action="Index" asp-route-itemsPerPage="">
-			<option value="3">3</option>
-			<option value="5">5</option>
-			<option value="8">8</option>
-		</select>
-	</div>
 
 	<div>
 		<a asp-action="Create" class="btn btn-primary">Create New</a>
@@ -36,7 +37,9 @@
 				<th>
 					<a asp-action="Index"
 					   asp-route-sortOrder="@ViewData["NameSortParam"]"
-					   asp-route-searchString="@ViewData["CurrentFilter"]">
+					   asp-route-searchString="@ViewData["CurrentFilter"]"
+					   asp-route-itemsPerPage="@ViewData["ItemsPerPage"]"
+					>
 						Last name
 						@* @Html.DisplayNameFor(model => model.LastName) *@
 					</a>
@@ -49,7 +52,9 @@
 				<th>
 					<a asp-action="Index"
 					   asp-route-sortOrder="@ViewData["DateSortParam"]"
-					   asp-route-searchString="@ViewData["CurrentFilter"]">
+					   asp-route-searchString="@ViewData["CurrentFilter"]"
+					   asp-route-itemsPerPage="@ViewData["ItemsPerPage"]"
+					>
 						Enrollment date
 						@* @Html.DisplayNameFor(model => model.EnrollmentDate) *@
 					</a>
@@ -91,6 +96,7 @@
 	<a asp-action="Index"
 	   asp-route-pageIndex="@(Model.PageIndex - 1)"
 	   asp-route-searchString="@ViewData["CurrentFilter"]"
+	   asp-route-itemsPerPage="@ViewData["ItemsPerPage"]"
 	   class="btn btn-default @prevDisabled">
 		Prev
 	</a>
@@ -98,11 +104,11 @@
 	<div class="pagination-items">
 		@for (int i = 1; i <= Model.TotalPages; i++)
 		{
-			<a	asp-action="Index"
-				asp-route-pageIndex="@i"
-				asp-route-searchString="@ViewData["CurrentFilter"]"
-				class=@(i == Model.PageIndex ? "selected-page" : "pagination-item")
-				>
+			<a asp-action="Index"
+			   asp-route-pageIndex="@i"
+			   asp-route-searchString="@ViewData["CurrentFilter"]"
+			   asp-route-itemsPerPage="@ViewData["ItemsPerPage"]"
+			   class=@(i == Model.PageIndex ? "selected-page" : "pagination-item")>
 				@i
 			</a>
 		}
@@ -111,6 +117,7 @@
 	<a asp-action="Index"
 	   asp-route-pageIndex="@(Model.PageIndex + 1)"
 	   asp-route-searchString="@ViewData["CurrentFilter"]"
+	   asp-route-itemsPerPage="@ViewData["ItemsPerPage"]"
 	   class="btn btn-default @nextDisabled">
 		Next
 	</a>
