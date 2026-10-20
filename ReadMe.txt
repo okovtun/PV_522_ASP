@@ -6,6 +6,13 @@ https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
 TODO:
+1. В Solution 'MVC' добавить проект 'Academy';
+2. К проекту 'Academy' подключить нашу Базу (PV_522_Import);
+3. В приложении отобразить Дисциплины, Направления обучения, Группы, Студентов и Преподавателей;
+4. Во всех моделях применить DataAnnotations;
+5. На Index-ах применить Сортировку, Поиск и Pagination;
+
+TODO:
 1. Прикрутить Pagination на все остальные страницы;
 2. Попробовать добить ItemsPerPage;
 
