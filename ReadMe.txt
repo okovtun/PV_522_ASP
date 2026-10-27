@@ -6,6 +6,9 @@ https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
 TODO:
+1. Прикрутить выбор Department-а на страницку 'ContosoUniversity/Courses/Edit';
+
+DONE:
 1. На странице 'Directions' обеспечить выбор направления кнопкой 'Select',
    и для выбранного направления отобразить группы, прямо на странице 'Directions';
 2. Для выбранной группы отобразить список студентов, прямо на странице 'Index';
