@@ -120,13 +120,13 @@ namespace ContosoUniversity.Controllers
 
 			Instructor instructor = await _context.Instructors
 				.Include(i => i.OfficeAssignment)
+				.Include(i => i.CourseAssignments)
+					.ThenInclude(ca => ca.Course)
 				.AsNoTracking()
 				.FirstOrDefaultAsync(m => m.ID == id);
 
-			if (instructor == null)
-			{
-				return NotFound();
-			}
+			if (instructor == null)return NotFound();
+			PopulateAssignedCourseData(instructor);
 			return View(instructor);
 		}
 
@@ -136,12 +136,19 @@ namespace ContosoUniversity.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		//public async Task<IActionResult> EditPost(int? id)
-		public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,FirstName,HireDate")] Instructor instructor)
+		public async Task<IActionResult> Edit
+		(
+			int id,
+			[Bind("ID,LastName,FirstName,HireDate")] Instructor instructor,
+			string[] selectedCourses
+		)
 		{
 			if (id == null) return NotFound();
 
 			instructor = await _context.Instructors
 				.Include(i => i.OfficeAssignment)
+				.Include(i => i.CourseAssignments)
+					.ThenInclude(ca => ca.Course)
 				.FirstOrDefaultAsync(i => i.ID == id);
 
 			bool ok = await TryUpdateModelAsync<Instructor>
@@ -154,11 +161,70 @@ namespace ContosoUniversity.Controllers
 			{
 				if (String.IsNullOrWhiteSpace(instructor.OfficeAssignment?.Location))
 					instructor.OfficeAssignment = null;
+				UpdateInstructorCourses(selectedCourses, instructor);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
 			}
-
+			UpdateInstructorCourses(selectedCourses, instructor);
+			PopulateAssignedCourseData(instructor);
 			return View(instructor);
+		}
+		void PopulateAssignedCourseData(Instructor instructor)
+		{
+			IQueryable<Course> courses = _context.Courses;
+			HashSet<int> instructorCourses = new HashSet<int>
+			(
+				instructor.CourseAssignments.Select(ca => ca.CourseID)
+			);
+			List<AssignedCourseData> viewModel = new List<AssignedCourseData>();
+			foreach (Course course in courses)
+			{
+				viewModel.Add
+				(
+					new AssignedCourseData
+					{
+						CourseID = course.CourseID,
+						Title = course.Title,
+						Assigned = instructorCourses.Contains(course.CourseID)
+					}
+				);
+			}
+			ViewData["Courses"] = viewModel;
+		}
+		void UpdateInstructorCourses(string[] selectedCourses, Instructor instructor)
+		{
+			//if (selectedCourses == null)
+			//{
+			//	instructor.CourseAssignments = null;
+			//	return;
+			//}
+			HashSet<string> selectedCoursesHS = new HashSet<string>(selectedCourses);
+			HashSet<int> instructorCourses = new HashSet<int>
+			(
+				instructor.CourseAssignments.Select (ca => ca.CourseID)
+			);
+			foreach (Course course in _context.Courses)
+			{
+				if (selectedCoursesHS.Contains(course.CourseID.ToString()))
+				{
+					if (!instructorCourses.Contains(course.CourseID))
+						instructor.CourseAssignments.Add
+						(
+							new CourseAssignment
+							{
+								InstructorID = instructor.ID,
+								CourseID = course.CourseID,
+							}
+						);
+					else if (instructorCourses.Contains(course.CourseID))
+					{
+						CourseAssignment courseToRemove = instructor
+							.CourseAssignments
+							.FirstOrDefault(ca => ca.CourseID == course.CourseID);
+						_context.Remove(courseToRemove);
+					}
+				}
+			}
 		}
 
 		/*public async Task<IActionResult> Edit(int id, [Bind("ID,LastName,FirstName,HireDate")] Instructor instructor)
