@@ -125,7 +125,7 @@ namespace ContosoUniversity.Controllers
 				.AsNoTracking()
 				.FirstOrDefaultAsync(m => m.ID == id);
 
-			if (instructor == null)return NotFound();
+			if (instructor == null) return NotFound();
 			PopulateAssignedCourseData(instructor);
 			return View(instructor);
 		}
@@ -201,7 +201,7 @@ namespace ContosoUniversity.Controllers
 			HashSet<string> selectedCoursesHS = new HashSet<string>(selectedCourses);
 			HashSet<int> instructorCourses = new HashSet<int>
 			(
-				instructor.CourseAssignments.Select (ca => ca.CourseID)
+				instructor.CourseAssignments.Select(ca => ca.CourseID)
 			);
 			foreach (Course course in _context.Courses)
 			{
@@ -216,13 +216,13 @@ namespace ContosoUniversity.Controllers
 								CourseID = course.CourseID,
 							}
 						);
-					else if (instructorCourses.Contains(course.CourseID))
-					{
-						CourseAssignment courseToRemove = instructor
-							.CourseAssignments
-							.FirstOrDefault(ca => ca.CourseID == course.CourseID);
-						_context.Remove(courseToRemove);
-					}
+				}
+				else if (instructorCourses.Contains(course.CourseID))
+				{
+					CourseAssignment courseToRemove = instructor
+						.CourseAssignments
+						.FirstOrDefault(ca => ca.CourseID == course.CourseID);
+					_context.Remove(courseToRemove);
 				}
 			}
 		}

@@ -46,7 +46,12 @@
 							int count = 0;
 							List<ContosoUniversity.Models.ViewModels.AssignedCourseData>
 							courses = ViewBag.Courses;
-							foreach (ContosoUniversity.Models.ViewModels.AssignedCourseData course in courses)
+							foreach
+							(
+								ContosoUniversity.Models.ViewModels.AssignedCourseData course 
+								in 
+								courses
+							)
 							{
 								if (count++ % 3 == 0)
 								{
@@ -59,9 +64,9 @@
 											id="@course.CourseID"
 											@(course.Assigned ? "checked=\"checked\"" : "")
 											/>
-											<label for="@course.CourseID">
-												@course.CourseID @course.Title
-											</label>
+									<label for="@course.CourseID">
+										@course.CourseID @course.Title
+									</label>
 								@:</td>
 							}
 						}
