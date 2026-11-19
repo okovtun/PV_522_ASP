@@ -5,6 +5,8 @@ SVG:
 https://www.w3schools.com/graphics/svg_intro.asp
 https://www.w3schools.com/graphics/svg_path.asp
 
+WA:https://chat.whatsapp.com/Kp6mJgo0KKM3kqzEDFsQ68
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////						React						////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +14,15 @@ https://www.w3schools.com/graphics/svg_path.asp
 https://www.youtube.com/playlist?list=PLFC11DuPxj4E
 
 TODO:
+React movies
+
+DONE:
+Здалить react_2 на GitHub;
+
+DONE:
+1. Фоточки должны подгружаться из локального диска, а не из Интернета;
+
+DONE:
 1. Реализовать приложение, которое будет читать файл 'db.json' и выкачивать все фото из этого файла в каталог 'photos';
 
 Git:
